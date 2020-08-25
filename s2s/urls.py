@@ -18,13 +18,16 @@ from django.urls import path
 from django.urls import include
 from rest_framework import routers
 from products.api import ProductViewSet
+from s2s import views
 
 
 api_router = routers.DefaultRouter()
 api_router.register(r'products', ProductViewSet, basename='products')
 
 urlpatterns = [
+    path('s2s/products/', views.ProductListView.as_view(), name='s2s_products'),
+    path('s2s/add/', views.ProductAddView.as_view(), name='add_product'),
     path('', include(api_router.urls)),
     path('admin/', admin.site.urls),
-    # path('', views.ProductView.as_view(), name='index'),
+
 ]
