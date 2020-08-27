@@ -4,3 +4,8 @@ markdown
 django-filter
 requests
 django-jsonfield
+django-crispy-forms
+pymysql
+mysqlclient
+# mysql-python
+
