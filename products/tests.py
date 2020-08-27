@@ -7,7 +7,8 @@ from products.models import Product
 
 class ProductApiTests(APITestCase):
 
-    url = reverse('products')
+    # url = reverse('products')
+    url = reverse('products-list')
 
     def test_create_list_product(self):
         """
