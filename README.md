@@ -49,3 +49,5 @@ Destroying test database for alias 'default'...
 
 * Setup (including db): half hour.
 * Model and API interface with testing: 2 hours.
+* UI (Indjango because vue.js would play nicely): 45 minutes.
+
