@@ -43,4 +43,6 @@ class ProductAddView(FormView):
 
             # Log the error and make it user friendly.
             # messages.error(self.request, e) # haven't set this up either
-            self.request.messages.add("Unable to convert currency.")
+            self.request.messages.add("Unable to add product")
+
+        return super(ProductAddView, self).form_valid(form)
