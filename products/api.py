@@ -20,8 +20,12 @@ class ProductViewSet(viewsets.ModelViewSet): #, ListCreateAPIView):
     queryset = Product.objects.all()
     # The below requires setting up of DRF filter_backends
     # filterset_fields = ("name", "sku",)
+    # paginate_by = 10
 
     def create(self, request, *args, **kwargs):
+
+        result = []
+        headers = {}
 
         for data in request.data:
 
@@ -30,11 +34,15 @@ class ProductViewSet(viewsets.ModelViewSet): #, ListCreateAPIView):
                 new_product = Product(**data)
                 new_product.clean()
                 new_product.save()
-                serializer = self.serializer_class
-                headers = self.get_success_headers(serializer.data)
+                result.append("Added product SKU: {}.".format(data.get("sku", "Unknown")))
 
             except Exception as e:
 
-                pass
+                result.append(
+                    "Skipping product SKU: {}; because of error: {}".format(data.get("sku", "Unknown"), e)
+                )
 
-        return Response(data, status=status.HTTP_201_CREATED, headers=headers)
+        serializer = self.serializer_class
+        headers = self.get_success_headers(serializer.data)
+
+        return Response(result, status=status.HTTP_201_CREATED, headers=headers)

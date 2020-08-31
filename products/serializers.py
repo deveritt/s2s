@@ -14,3 +14,4 @@ class ProductSerialier(serializers.ModelSerializer):
             'name',
             'attributes'
         ]
+        # lookup_field = "name"
